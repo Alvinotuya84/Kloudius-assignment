@@ -2,7 +2,7 @@ import { useTheme } from '@/hooks/useTheme.hook';
 import { ToastType, useToastStore } from '@/stores/toast.store';
 import { MotiView } from 'moti';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ThemedIcon from './ThemedIcon';
 import ThemedText from './ThemedText';
@@ -92,7 +92,7 @@ export const Toast = () => {
                 style={styles.icon}
               />
               <ThemedText
-                style={[styles.message, { color: config.color }] as ViewStyle}
+                style={[styles.message, { color: config.color }] as TextStyle}
                 size="sm"
               >
                 {toast.message}
