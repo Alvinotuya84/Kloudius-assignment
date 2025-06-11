@@ -1,5 +1,6 @@
 import { useTheme } from '@/hooks/useTheme.hook';
 import { ToastType, useToastStore } from '@/stores/toast.store';
+import { BlurView } from 'expo-blur';
 import { MotiView } from 'moti';
 import React from 'react';
 import { StyleSheet, TextStyle, TouchableOpacity } from 'react-native';
@@ -13,25 +14,25 @@ const getToastConfig = (type: ToastType, theme: ReturnType<typeof useTheme>) => 
       return {
         icon: 'check-circle' as const,
         color: theme.success,
-        backgroundColor: `${theme.success}20`,
+        backgroundColor: `${theme.success}15`,
       };
     case 'error':
       return {
         icon: 'x-circle' as const,
         color: theme.error,
-        backgroundColor: `${theme.error}20`,
+        backgroundColor: `${theme.error}15`,
       };
     case 'warning':
       return {
         icon: 'alert-circle' as const,
         color: theme.warning,
-        backgroundColor: `${theme.warning}20`,
+        backgroundColor: `${theme.warning}15`,
       };
     case 'info':
       return {
         icon: 'info' as const,
         color: theme.info,
-        backgroundColor: `${theme.info}20`,
+        backgroundColor: `${theme.info}15`,
       };
   }
 };
@@ -46,7 +47,7 @@ export const Toast = () => {
       style={[
         styles.container,
         {
-          paddingTop: insets.top + 10,
+          paddingBottom: insets.bottom + 10,
         },
       ]}
     >
@@ -58,7 +59,7 @@ export const Toast = () => {
             from={{
               opacity: 0,
               scale: 0.9,
-              translateY: -20,
+              translateY: 20,
             }}
             animate={{
               opacity: 1,
@@ -68,36 +69,33 @@ export const Toast = () => {
             exit={{
               opacity: 0,
               scale: 0.9,
-              translateY: -20,
+              translateY: 20,
             }}
             transition={{
               type: 'timing',
               duration: 300,
             } as any}
-            style={[
-              styles.toast,
-              {
-                backgroundColor: config.backgroundColor,
-              },
-            ]}
+            style={styles.toast}
           >
-            <TouchableOpacity
-              style={styles.content}
-              onPress={() => removeToast(toast.id)}
-            >
-              <ThemedIcon
-                name={config.icon}
-                size={20}
-                color={config.color}
-                style={styles.icon}
-              />
-              <ThemedText
-                style={[styles.message, { color: config.color }] as TextStyle}
-                size="sm"
+            <BlurView intensity={20} tint="light" style={styles.blurContainer}>
+              <TouchableOpacity
+                style={[styles.content, { backgroundColor: config.backgroundColor }]}
+                onPress={() => removeToast(toast.id)}
               >
-                {toast.message}
-              </ThemedText>
-            </TouchableOpacity>
+                <ThemedIcon
+                  name={config.icon}
+                  size={20}
+                  color={config.color}
+                  style={styles.icon}
+                />
+                <ThemedText
+                  style={[styles.message, { color: config.color }] as unknown as TextStyle}
+                  size="sm"
+                >
+                  {toast.message}
+                </ThemedText>
+              </TouchableOpacity>
+            </BlurView>
           </MotiView>
         );
       })}
@@ -108,7 +106,7 @@ export const Toast = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: 0,
+    bottom: 0,
     left: 0,
     right: 0,
     zIndex: 9999,
@@ -116,16 +114,29 @@ const styles = StyleSheet.create({
   },
   toast: {
     marginBottom: 8,
-    borderRadius: 8,
+    borderRadius: 12,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  blurContainer: {
+    borderRadius: 12,
     overflow: 'hidden',
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
+    padding: 16,
+    borderRadius: 12,
   },
   icon: {
-    marginRight: 8,
+    marginRight: 12,
   },
   message: {
     flex: 1,
