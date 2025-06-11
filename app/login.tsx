@@ -5,6 +5,7 @@ import ThemedText from '@/components/ui/ThemedText';
 import { useAuth } from '@/contexts/auth.context';
 import { LoginInput } from '@/schemas/auth.schema';
 import { useToastStore } from '@/stores/toast.store';
+import { formatErrorMessage } from '@/utils/error.utils';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
@@ -22,10 +23,10 @@ export default function LoginScreen() {
       setLoading(true);
       const input: LoginInput = { email, password };
       await login(input);
-      addToast('Successfully logged in!', 'success');
+      addToast('Welcome back! You\'ve successfully logged in.', 'success');
       router.replace('/(tabs)');
     } catch (error: any) {
-      addToast(error.message || 'Failed to login', 'error');
+      addToast(formatErrorMessage(error), 'error');
     } finally {
       setLoading(false);
     }

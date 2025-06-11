@@ -5,6 +5,7 @@ import ThemedText from '@/components/ui/ThemedText';
 import { useAuth } from '@/contexts/auth.context';
 import { SignupInput } from '@/schemas/auth.schema';
 import { useToastStore } from '@/stores/toast.store';
+import { formatErrorMessage } from '@/utils/error.utils';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
@@ -23,10 +24,10 @@ export default function SignupScreen() {
       setLoading(true);
       const input: SignupInput = { name, email, password };
       await signup(input);
-      addToast('Account created successfully!', 'success');
+      addToast('Your account has been created successfully! Welcome aboard!', 'success');
       router.replace('/(tabs)');
     } catch (error: any) {
-      addToast(error.message || 'Failed to create account', 'error');
+      addToast(formatErrorMessage(error), 'error');
     } finally {
       setLoading(false);
     }
