@@ -4,23 +4,27 @@ A React Native app with Login and Signup functionality using React Context API t
 
 ## Features
 
-- User Authentication (Login/Signup)
-- Form Validation using Zod
-- State Management using Zustand
-- Protected Routes using Expo Router
-- Persistent Authentication using AsyncStorage
-- Animated UI Components
-- Unit Tests
+* User Authentication (Login/Signup)
+* Form Validation using Zod
+* State Management using Zustand
+* Protected Routes using Expo Router
+* Persistent Authentication using AsyncStorage
+* Animated UI Components
+* Glass Morphic UI Design
+* Toast Notifications System
+* Human-readable Error Messages
+* Responsive Layout with Safe Area Support
 
 ## Tech Stack
 
-- React Native
-- Expo Router
-- Zustand (State Management)
-- Zod (Form Validation)
-- AsyncStorage (Data Persistence)
-- React Native Testing Library
-- Jest
+* React Native
+* Expo Router
+* Zustand (State Management)
+* Zod (Form Validation)
+* AsyncStorage (Data Persistence)
+* Expo Blur (Glass Morphic Effects)
+* Moti (Animations)
+* React Native Safe Area Context
 
 ## Project Structure
 
@@ -33,22 +37,25 @@ A React Native app with Login and Signup functionality using React Context API t
 │   ├── login.tsx
 │   └── signup.tsx
 ├── components/
-│   ├── Box.tsx
-│   ├── Page.tsx
-│   ├── ThemedButton.tsx
-│   └── ThemedText.tsx
+│   ├── ui/
+│   │   ├── Box.tsx
+│   │   ├── Page.tsx
+│   │   ├── ThemedButton.tsx
+│   │   ├── ThemedText.tsx
+│   │   ├── ThemedIcon.tsx
+│   │   └── Toast.tsx
 ├── contexts/
 │   └── auth.context.tsx
 ├── stores/
-│   └── auth.store.ts
+│   ├── auth.store.ts
+│   └── toast.store.ts
 ├── schemas/
 │   └── auth.schema.ts
-└── tests/
-    ├── auth.store.test.ts
-    ├── auth.context.test.tsx
-    ├── login.test.tsx
-    ├── signup.test.tsx
-    └── home.test.tsx
+├── utils/
+│   └── error.utils.ts
+└── constants/
+    ├── dimensions.constant.ts
+    └── scaler.constants.ts
 ```
 
 ## Setup Instructions
@@ -69,41 +76,41 @@ npm install
 npm start
 ```
 
-4. Run tests:
-```bash
-npm test
-```
-
 ## Features Implementation
 
 ### Authentication Context
-- Implemented using React's Context API
-- Manages global authentication state
-- Provides login, signup, and logout functions
-- Stores user information
+* Implemented using React's Context API
+* Manages global authentication state
+* Provides login, signup, and logout functions
+* Stores user information
 
 ### Form Validation
-- Email format validation
-- Password length validation
-- Required field validation
-- Error message display
+* Email format validation
+* Password length validation
+* Required field validation
+* Human-readable error messages
 
-### Protected Routes
-- Login/Signup screens for unauthenticated users
-- Home screen for authenticated users
-- Automatic redirection based on authentication state
+### Toast Notifications
+* Glass morphic design using expo-blur
+* Animated entrance and exit
+* Multiple toast types (success, error, warning, info)
+* Auto-dismiss with tap to dismiss option
+* Bottom-aligned with safe area support
 
 ### UI Components
-- Animated form inputs
-- Loading states
-- Error messages
-- Responsive layout
-- Theme support
+* Glass morphic design elements
+* Animated form inputs
+* Loading states
+* Responsive layout
+* Theme support
+* Safe area aware components
 
-### Testing
-- Unit tests for authentication store
-- Component tests for screens
-- Integration tests for authentication flow
+### Error Handling
+* Human-readable error messages
+* Form validation errors
+* Network errors
+* Authentication errors
+* Fallback error messages
 
 ## Contributing
 
