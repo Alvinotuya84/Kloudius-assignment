@@ -18,7 +18,6 @@ export default function RootLayout() {
   const isAuthenticated = useAuthStore((state: AuthState) => state.isAuthenticated);
 
   if (!loaded) {
-    // Async font loading only occurs in development.
     return null;
   }
 
