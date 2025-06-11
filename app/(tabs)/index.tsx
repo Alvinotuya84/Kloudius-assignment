@@ -1,7 +1,7 @@
-import Box, { AnimateOnAppear } from '@/components/Box';
-import { FancyPageHeader } from '@/components/Page';
-import ThemedButton from '@/components/ThemedButton';
-import ThemedText from '@/components/ThemedText';
+import { FancyPageHeader } from '@/components//ui/Page';
+import ThemedText from '@/components//ui/ThemedText';
+import Box, { AnimateOnAppear } from '@/components/ui/Box';
+import ThemedButton from '@/components/ui/ThemedButton';
 import { useAuth } from '@/contexts/auth.context';
 import { router } from 'expo-router';
 import React from 'react';
