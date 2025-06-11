@@ -55,8 +55,8 @@ A React Native app with Login and Signup functionality using React Context API t
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/Alvinotuya84/Kloudius-assignment.git
+cd Kloudius-assignment
 ```
 
 2. Install dependencies:
