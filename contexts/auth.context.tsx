@@ -34,8 +34,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signup = useCallback(async (input: SignupInput) => {
     try {
       const validatedData = signupSchema.parse(input);
-      // In a real app, you would make an API call here
-      // For demo purposes, we'll just create a mock user
+      
       const mockUser: User = {
         id: '1',
         name: validatedData.name,
