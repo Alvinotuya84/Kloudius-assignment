@@ -14,6 +14,7 @@ A React Native app with Login and Signup functionality using React Context API t
 * Toast Notifications System
 * Human-readable Error Messages
 * Responsive Layout with Safe Area Support
+* Unit Testing with Jest and React Native Testing Library
 
 ## Tech Stack
 
@@ -25,6 +26,8 @@ A React Native app with Login and Signup functionality using React Context API t
 * Expo Blur (Glass Morphic Effects)
 * Moti (Animations)
 * React Native Safe Area Context
+* Jest (Testing)
+* React Native Testing Library
 
 ## Project Structure
 
@@ -43,7 +46,9 @@ A React Native app with Login and Signup functionality using React Context API t
 │   │   ├── ThemedButton.tsx
 │   │   ├── ThemedText.tsx
 │   │   ├── ThemedIcon.tsx
-│   │   └── Toast.tsx
+│   │   ├── Toast.tsx
+│   │   └── __tests__/
+│   │       └── Toast.test.tsx
 ├── contexts/
 │   └── auth.context.tsx
 ├── stores/
@@ -52,10 +57,14 @@ A React Native app with Login and Signup functionality using React Context API t
 ├── schemas/
 │   └── auth.schema.ts
 ├── utils/
-│   └── error.utils.ts
-└── constants/
-    ├── dimensions.constant.ts
-    └── scaler.constants.ts
+│   ├── error.utils.ts
+│   └── __tests__/
+│       └── error.utils.test.ts
+├── constants/
+│   ├── dimensions.constant.ts
+│   └── scaler.constants.ts
+├── jest.config.js
+└── jest.setup.js
 ```
 
 ## Setup Instructions
@@ -74,6 +83,21 @@ npm install
 3. Start the development server:
 ```bash
 npm start
+```
+
+4. Run tests:
+```bash
+# Run tests in watch mode
+npm test
+
+# Run tests for changed files only
+npm run testDebug
+
+# Run all tests once
+npm run testFinal
+
+# Update snapshots
+npm run updateSnapshots
 ```
 
 ## Features Implementation
@@ -111,6 +135,14 @@ npm start
 * Network errors
 * Authentication errors
 * Fallback error messages
+
+### Testing
+* Jest configuration with jest-expo preset
+* React Native Testing Library for component testing
+* Global mocks for Expo and React Native modules
+* Unit tests for components and utilities
+* Snapshot testing support
+* Code coverage reporting
 
 ## Contributing
 
