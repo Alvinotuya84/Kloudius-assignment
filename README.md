@@ -1,50 +1,118 @@
-# Welcome to your Expo app 👋
+# React Native Authentication App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native app with Login and Signup functionality using React Context API to manage the authentication state. This project demonstrates authentication flows, state management using Context API, form handling, and navigation.
 
-## Get started
+## Features
 
-1. Install dependencies
+- User Authentication (Login/Signup)
+- Form Validation using Zod
+- State Management using Zustand
+- Protected Routes using Expo Router
+- Persistent Authentication using AsyncStorage
+- Animated UI Components
+- Unit Tests
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- React Native
+- Expo Router
+- Zustand (State Management)
+- Zod (Form Validation)
+- AsyncStorage (Data Persistence)
+- React Native Testing Library
+- Jest
 
-   ```bash
-   npx expo start
-   ```
+## Project Structure
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+├── app/
+│   ├── (tabs)/
+│   │   ├── _layout.tsx
+│   │   └── index.tsx
+│   ├── _layout.tsx
+│   ├── login.tsx
+│   └── signup.tsx
+├── components/
+│   ├── Box.tsx
+│   ├── Page.tsx
+│   ├── ThemedButton.tsx
+│   └── ThemedText.tsx
+├── contexts/
+│   └── auth.context.tsx
+├── stores/
+│   └── auth.store.ts
+├── schemas/
+│   └── auth.schema.ts
+└── tests/
+    ├── auth.store.test.ts
+    ├── auth.context.test.tsx
+    ├── login.test.tsx
+    ├── signup.test.tsx
+    └── home.test.tsx
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Setup Instructions
 
-## Learn more
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd <repository-name>
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+2. Install dependencies:
+```bash
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+3. Start the development server:
+```bash
+npm start
+```
 
-## Join the community
+4. Run tests:
+```bash
+npm test
+```
 
-Join our community of developers creating universal apps.
+## Features Implementation
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Authentication Context
+- Implemented using React's Context API
+- Manages global authentication state
+- Provides login, signup, and logout functions
+- Stores user information
+
+### Form Validation
+- Email format validation
+- Password length validation
+- Required field validation
+- Error message display
+
+### Protected Routes
+- Login/Signup screens for unauthenticated users
+- Home screen for authenticated users
+- Automatic redirection based on authentication state
+
+### UI Components
+- Animated form inputs
+- Loading states
+- Error messages
+- Responsive layout
+- Theme support
+
+### Testing
+- Unit tests for authentication store
+- Component tests for screens
+- Integration tests for authentication flow
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

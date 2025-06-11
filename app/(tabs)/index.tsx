@@ -1,75 +1,71 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import Box, { AnimateOnAppear } from '@/components/Box';
+import { FancyPageHeader } from '@/components/Page';
+import ThemedButton from '@/components/ThemedButton';
+import ThemedText from '@/components/ThemedText';
+import { useAuth } from '@/contexts/auth.context';
+import { router } from 'expo-router';
+import React from 'react';
+import { Alert } from 'react-native';
 
 export default function HomeScreen() {
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Logout',
+      'Are you sure you want to logout?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Logout',
+          onPress: () => {
+            logout();
+            router.replace('/login');
+          },
+        },
+      ]
+    );
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <Box flex={1} color="white" px={20} py={40}>
+      <AnimateOnAppear visible={true} animation="fadeIn">
+        <FancyPageHeader
+          title="Welcome"
+          description="You are now logged in"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </AnimateOnAppear>
+
+      <Box gap={20} mt={40}>
+        <AnimateOnAppear visible={true} animation="slideInUp" duration={300}>
+          <Box gap={10}>
+            <ThemedText size="lg">User Information</ThemedText>
+            <Box
+              color="#f5f5f5"
+              radius={12}
+              p={20}
+              gap={10}
+            >
+              <ThemedText>Name: {user?.name}</ThemedText>
+              <ThemedText>Email: {user?.email}</ThemedText>
+            </Box>
+          </Box>
+        </AnimateOnAppear>
+
+        <AnimateOnAppear visible={true} animation="slideInUp" duration={400}>
+          <ThemedButton
+            onPress={handleLogout}
+            block
+            mt={20}
+            color="#ff4444"
+          >
+            Logout
+          </ThemedButton>
+        </AnimateOnAppear>
+      </Box>
+    </Box>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
