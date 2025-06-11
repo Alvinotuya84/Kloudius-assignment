@@ -71,10 +71,11 @@ export interface ThemedIconProps {
   size?: number | TextSize;
   color?: string | OpaqueColorValue;
   style?: StyleProp<TextStyle> | undefined;
+  testID?: string;
 }
 
 const ThemedIcon = forwardRef<Component<IconProps<any>>, ThemedIconProps>(
-  ({ name, color, size = "md", source = "Feather", style }, ref) => {
+  ({ name, color, size = "md", source = "Feather", style, testID }, ref) => {
     const iconSize = () => {
       if (typeof size === "string") {
         return iconSizes.find((options) => options.size === size)?.value ?? 18;
@@ -89,6 +90,7 @@ const ThemedIcon = forwardRef<Component<IconProps<any>>, ThemedIconProps>(
       size: iconSize(),
       color: color ?? theme.text,
       style,
+      testID,
     };
 
     switch (source) {

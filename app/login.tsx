@@ -4,12 +4,14 @@ import ThemedButton from '@/components/ui/ThemedButton';
 import ThemedText from '@/components/ui/ThemedText';
 import { useAuth } from '@/contexts/auth.context';
 import { LoginInput } from '@/schemas/auth.schema';
+import { useToastStore } from '@/stores/toast.store';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 
 export default function LoginScreen() {
   const { login } = useAuth();
+  const { addToast } = useToastStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,9 +22,10 @@ export default function LoginScreen() {
       setLoading(true);
       const input: LoginInput = { email, password };
       await login(input);
+      addToast('Successfully logged in!', 'success');
       router.replace('/(tabs)');
     } catch (error: any) {
-      Alert.alert('Error', error.message || 'Failed to login');
+      addToast(error.message || 'Failed to login', 'error');
     } finally {
       setLoading(false);
     }

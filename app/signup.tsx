@@ -4,12 +4,14 @@ import ThemedButton from '@/components/ui/ThemedButton';
 import ThemedText from '@/components/ui/ThemedText';
 import { useAuth } from '@/contexts/auth.context';
 import { SignupInput } from '@/schemas/auth.schema';
+import { useToastStore } from '@/stores/toast.store';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 
 export default function SignupScreen() {
   const { signup } = useAuth();
+  const { addToast } = useToastStore();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,9 +23,10 @@ export default function SignupScreen() {
       setLoading(true);
       const input: SignupInput = { name, email, password };
       await signup(input);
+      addToast('Account created successfully!', 'success');
       router.replace('/(tabs)');
     } catch (error: any) {
-      Alert.alert('Error', error.message || 'Failed to sign up');
+      addToast(error.message || 'Failed to create account', 'error');
     } finally {
       setLoading(false);
     }
@@ -103,7 +106,7 @@ export default function SignupScreen() {
             block
             mt={20}
           >
-            Sign Up
+            Sign up
           </ThemedButton>
         </AnimateOnAppear>
 
