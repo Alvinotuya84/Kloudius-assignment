@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 import Box from '@/components/ui/Box';
 import Page from '@/components/ui/Page';
 
-export default function TabTwoScreen() {
+export default function SettingsScreen() {
   return (
     <Page
     header={{
-      title:"explore"
+      title:"settings"
     }}
     >
 <Box></Box>

@@ -17,7 +17,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.kloudiusassesment"
     },
     "web": {
       "bundler": "metro",
@@ -33,6 +34,24 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      ["react-native-bottom-tabs"],
+      [
+        "expo-build-properties", 
+        {
+          "ios": {
+            "extraPods": [
+              {
+                "name": "SDWebImage",
+                "modular_headers": true
+              },
+              {
+                "name": "SDWebImageSVGCoder",
+                "modular_headers": true
+              }
+            ]
+          }
         }
       ]
     ],
